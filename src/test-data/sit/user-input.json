@@ -1,0 +1,12 @@
+{
+  "payment": {
+    "cardNumber": "5555666677778888",
+    "cardHolder": "SIT TEST USER",
+    "amount": "250.00",
+    "gatewayUrl": "https://sit-gateway.mysystem.com"
+  },
+  "search": {
+    "keyword": "sit product",
+    "expectedResultsCount": 10
+  }
+}

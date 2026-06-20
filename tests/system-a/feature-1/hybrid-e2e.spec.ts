@@ -1,5 +1,6 @@
 import { test, expect } from '@fixtures/base.fixture.js';
 import { config } from '@config/env.config.js';
+import { testData } from '@test-data/data.loader.js';
 
 test.describe('System A - Hybrid E2E Integration Flow', () => {
 
@@ -37,6 +38,10 @@ test.describe('System A - Hybrid E2E Integration Flow', () => {
     } catch (e: any) {
       console.warn('[Hybrid Test Warning] Native Mobile execution context ignored for skeleton dry-run:', e.message);
     }
+
+    // 5. Test Data Action: Dynamic environment-specific input validation
+    console.log(`[Hybrid Test Step 5] Environment specific payment input: ${testData.payment.cardHolder} - Amount: ${testData.payment.amount}`);
+    expect(testData.payment.amount).toBeDefined();
 
     console.log('[Hybrid Test] Completed Cross-Platform E2E Scenario Successfully!');
   });

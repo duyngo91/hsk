@@ -10,7 +10,8 @@
       "@pages/*": ["src/pages/*"],
       "@screens/*": ["src/screens/*"],
       "@fixtures/*": ["src/fixtures/*"],
-      "@utils/*": ["src/utils/*"]
+      "@utils/*": ["src/utils/*"],
+      "@test-data/*": ["src/test-data/*"]
     },
     "strict": true,
     "esModuleInterop": true,

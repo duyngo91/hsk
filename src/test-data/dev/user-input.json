@@ -1,0 +1,12 @@
+{
+  "payment": {
+    "cardNumber": "4111222233334444",
+    "cardHolder": "DEV TEST USER",
+    "amount": "100.00",
+    "gatewayUrl": "https://dev-gateway.mysystem.com"
+  },
+  "search": {
+    "keyword": "dev product",
+    "expectedResultsCount": 2
+  }
+}

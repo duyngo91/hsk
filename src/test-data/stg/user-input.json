@@ -1,0 +1,12 @@
+{
+  "payment": {
+    "cardNumber": "4222111199990000",
+    "cardHolder": "STG TEST USER",
+    "amount": "500.00",
+    "gatewayUrl": "https://stg-gateway.mysystem.com"
+  },
+  "search": {
+    "keyword": "stg product",
+    "expectedResultsCount": 25
+  }
+}
