@@ -53,6 +53,8 @@ export default defineConfig({
         platform: envConfig.mobile.platformName.toLowerCase() as 'ios' | 'android',
         deviceName: envConfig.mobile.deviceName,
         installApps: [envConfig.mobile.appPath],
+        bundleId: envConfig.mobile.appPackage,
+        activity: envConfig.mobile.appActivity,
       },
     } as any
   ],

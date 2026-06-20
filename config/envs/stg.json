@@ -16,7 +16,9 @@
   "mobile": {
     "appPath": "./apps/stg-app.apk",
     "deviceName": "Pixel_7_Stg",
-    "platformName": "Android"
+    "platformName": "Android",
+    "appPackage": "com.example.myapp",
+    "appActivity": ".MainActivity"
   },
   "api": {
     "baseUrl": "https://stg-api.mysystem.com"

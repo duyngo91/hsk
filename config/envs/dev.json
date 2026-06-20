@@ -16,7 +16,9 @@
   "mobile": {
     "appPath": "./apps/dev-app.apk",
     "deviceName": "Pixel_7_Dev",
-    "platformName": "Android"
+    "platformName": "Android",
+    "appPackage": "com.example.myapp",
+    "appActivity": ".MainActivity"
   },
   "api": {
     "baseUrl": "https://dev-api.mysystem.com"

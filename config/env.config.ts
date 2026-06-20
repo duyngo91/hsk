@@ -18,6 +18,8 @@ export interface EnvConfig {
     appPath: string;
     deviceName: string;
     platformName: string;
+    appPackage?: string;
+    appActivity?: string;
   };
   api: {
     baseUrl: string;
