@@ -7,6 +7,7 @@ import { MerchantDashboardScreen } from '@screens/merchant-app/dashboard.screen.
 import { UserApiService } from '@core/api/api.client.js';
 import { DbClient } from '@core/database/db.client.js';
 import { config } from '@config/env.config.js';
+import { Logger } from '@utils/index.js';
 
 // Interface grouping all Web Page Objects
 export interface WebAppPOMs {
@@ -40,14 +41,14 @@ export const test = mobileTest.extend<{
 }>({
   // Web Browser Fixture (launched dynamically alongside mobile session)
   webPage: async ({}, use) => {
-    console.log('[Fixture] Launching Web Browser Context...');
+    Logger.info('[Fixture] Launching Web Browser Context...', 'base.fixture');
     const browser = await chromium.launch();
     const context = await browser.newContext();
     const page = await context.newPage();
 
     await use(page);
 
-    console.log('[Fixture] Closing Web Browser Context...');
+    Logger.info('[Fixture] Closing Web Browser Context...', 'base.fixture');
     await page.close();
     await context.close();
     await browser.close();
@@ -63,7 +64,7 @@ export const test = mobileTest.extend<{
 
   // Customer Mobile App Fixture (uses mobilewright's native `device` and `screen` fixtures)
   customerApp: async ({ device, screen }, use) => {
-    console.log('[Fixture] Launching Customer App...');
+    Logger.info('[Fixture] Launching Customer App...', 'base.fixture');
     const appConfig = config.mobile.apps.customerApp;
     // Launch the specific application package
     await device.launchApp(appConfig.appPackage, { activity: appConfig.appActivity });
@@ -75,12 +76,13 @@ export const test = mobileTest.extend<{
     await use(poms);
 
     // Clean up: stop the application package
+    Logger.info('[Fixture] Terminating Customer App...', 'base.fixture');
     await device.terminateApp(appConfig.appPackage);
   },
 
   // Driver Mobile App Fixture (uses mobilewright's native `device` and `screen` fixtures)
   driverApp: async ({ device, screen }, use) => {
-    console.log('[Fixture] Launching Driver App...');
+    Logger.info('[Fixture] Launching Driver App...', 'base.fixture');
     const appConfig = config.mobile.apps.driverApp;
     // Launch the specific application package
     await device.launchApp(appConfig.appPackage, { activity: appConfig.appActivity });
@@ -92,12 +94,13 @@ export const test = mobileTest.extend<{
     await use(poms);
 
     // Clean up: stop the application package
+    Logger.info('[Fixture] Terminating Driver App...', 'base.fixture');
     await device.terminateApp(appConfig.appPackage);
   },
 
   // Merchant Mobile App Fixture (uses mobilewright's native `device` and `screen` fixtures)
   merchantApp: async ({ device, screen }, use) => {
-    console.log('[Fixture] Launching Merchant App...');
+    Logger.info('[Fixture] Launching Merchant App...', 'base.fixture');
     const appConfig = config.mobile.apps.merchantApp;
     // Launch the specific application package
     await device.launchApp(appConfig.appPackage, { activity: appConfig.appActivity });
@@ -109,6 +112,7 @@ export const test = mobileTest.extend<{
     await use(poms);
 
     // Clean up: stop the application package
+    Logger.info('[Fixture] Terminating Merchant App...', 'base.fixture');
     await device.terminateApp(appConfig.appPackage);
   },
 

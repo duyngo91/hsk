@@ -7,11 +7,17 @@ import { config as envConfig } from './env.config.js';
  */
 export default defineConfig({
   testDir: '../tests',
+  globalSetup: './global-setup.ts',
+  globalTeardown: './global-teardown.ts',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 4 : undefined,
-  reporter: [['html', { open: 'never' }], ['list']],
+  reporter: [
+    ['html', { open: 'never' }],
+    ['list'],
+    ['../src/core/reporters/custom.reporter.ts']
+  ],
   use: {
     // Set base URL dynamically from environment config file
     baseURL: envConfig.web.baseUrl,
