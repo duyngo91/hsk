@@ -1,6 +1,6 @@
 ---
 name: mobilewright-automation
-description: Guidelines and code syntax for generating Native Mobile tests and hybrid Web+Mobile tests using Mobilewright and Playwright.
+description: Guidelines and code syntax for generating Native Mobile tests and hybrid Web+Mobile tests using Mobilewright and Playwright. Includes MCP integration guidelines.
 ---
 
 # Mobilewright Automation Guide for AI Agents
@@ -87,3 +87,20 @@ test('E2E Account Creation & Mobile Login', async ({ webApp, mobileApp, dbClient
   await mobileApp.loginScreen.login(newUser.username, newUser.password);
 });
 ```
+
+---
+
+## 5. Integrating with MCP (Model Context Protocol)
+
+When an AI Agent is executing, generating, or debugging tests in this framework, it can utilize local or cloud MCP Servers to control the browser or mobile device in real-time:
+
+### A. Playwright Web MCP
+AI agents can invoke `playwright` MCP tools (e.g., `browser_navigate`, `browser_click`, `browser_type`, `browser_snapshot`) to:
+1. Spin up a live browser window to inspect elements and fetch exact selector IDs.
+2. Interactively run through login and checkout flows to verify elements before generating POM files.
+
+### B. Mobilewright / Mobile MCP
+AI agents can invoke `mobile-mcp` (or custom Appium-based mobile MCP servers) to:
+1. Retrieve the active mobile screen's **accessibility tree** in JSON format to locate elements.
+2. Dispatch native touch/swipe/input events to verify application state.
+3. Automatically diagnose test failures by fetching live simulator screenshots and inspecting the app hierarchy.
