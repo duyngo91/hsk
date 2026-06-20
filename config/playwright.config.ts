@@ -55,6 +55,9 @@ export default defineConfig({
         installApps: [envConfig.mobile.appPath],
         bundleId: envConfig.mobile.appPackage,
         activity: envConfig.mobile.appActivity,
+        udid: envConfig.mobile.udid,
+        noReset: envConfig.mobile.noReset,
+        fullReset: envConfig.mobile.fullReset,
       },
     } as any
   ],

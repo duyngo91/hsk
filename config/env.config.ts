@@ -20,6 +20,9 @@ export interface EnvConfig {
     platformName: string;
     appPackage?: string;
     appActivity?: string;
+    udid?: string;
+    noReset?: boolean;
+    fullReset?: boolean;
   };
   api: {
     baseUrl: string;

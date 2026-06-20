@@ -18,7 +18,10 @@
     "deviceName": "Pixel_7_Dev",
     "platformName": "Android",
     "appPackage": "com.example.myapp",
-    "appActivity": ".MainActivity"
+    "appActivity": ".MainActivity",
+    "udid": "",
+    "noReset": true,
+    "fullReset": false
   },
   "api": {
     "baseUrl": "https://dev-api.mysystem.com"

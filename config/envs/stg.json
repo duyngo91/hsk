@@ -18,7 +18,10 @@
     "deviceName": "Pixel_7_Stg",
     "platformName": "Android",
     "appPackage": "com.example.myapp",
-    "appActivity": ".MainActivity"
+    "appActivity": ".MainActivity",
+    "udid": "",
+    "noReset": true,
+    "fullReset": false
   },
   "api": {
     "baseUrl": "https://stg-api.mysystem.com"
