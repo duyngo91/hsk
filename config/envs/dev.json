@@ -1,0 +1,35 @@
+{
+  "envName": "dev",
+  "web": {
+    "baseUrl": "https://dev.mysystem.com",
+    "users": {
+      "admin": {
+        "username": "dev_admin_user",
+        "password": "dev_admin_password"
+      },
+      "standard": {
+        "username": "dev_standard_user",
+        "password": "dev_standard_password"
+      }
+    }
+  },
+  "mobile": {
+    "appPath": "./apps/dev-app.apk",
+    "deviceName": "Pixel_7_Dev",
+    "platformName": "Android"
+  },
+  "api": {
+    "baseUrl": "https://dev-api.mysystem.com"
+  },
+  "database": {
+    "host": "localhost",
+    "port": 5432,
+    "username": "postgres_dev",
+    "password": "dev_password",
+    "database": "dev_db"
+  },
+  "testData": {
+    "welcomeMessage": "Welcome to Dev Environment",
+    "defaultTimeout": 5000
+  }
+}

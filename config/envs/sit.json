@@ -1,0 +1,35 @@
+{
+  "envName": "sit",
+  "web": {
+    "baseUrl": "https://sit.mysystem.com",
+    "users": {
+      "admin": {
+        "username": "sit_admin_user",
+        "password": "sit_admin_password"
+      },
+      "standard": {
+        "username": "sit_standard_user",
+        "password": "sit_standard_password"
+      }
+    }
+  },
+  "mobile": {
+    "appPath": "./apps/sit-app.apk",
+    "deviceName": "Pixel_7_Sit",
+    "platformName": "Android"
+  },
+  "api": {
+    "baseUrl": "https://sit-api.mysystem.com"
+  },
+  "database": {
+    "host": "sit-db.mysystem.com",
+    "port": 5432,
+    "username": "postgres_sit",
+    "password": "sit_password_secure",
+    "database": "sit_db"
+  },
+  "testData": {
+    "welcomeMessage": "Welcome to SIT Environment",
+    "defaultTimeout": 10000
+  }
+}

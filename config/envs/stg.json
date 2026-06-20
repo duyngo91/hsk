@@ -1,0 +1,35 @@
+{
+  "envName": "stg",
+  "web": {
+    "baseUrl": "https://stg.mysystem.com",
+    "users": {
+      "admin": {
+        "username": "stg_admin_user",
+        "password": "stg_admin_password"
+      },
+      "standard": {
+        "username": "stg_standard_user",
+        "password": "stg_standard_password"
+      }
+    }
+  },
+  "mobile": {
+    "appPath": "./apps/stg-app.apk",
+    "deviceName": "Pixel_7_Stg",
+    "platformName": "Android"
+  },
+  "api": {
+    "baseUrl": "https://stg-api.mysystem.com"
+  },
+  "database": {
+    "host": "stg-db.mysystem.com",
+    "port": 5432,
+    "username": "postgres_stg",
+    "password": "stg_password_ultra_secure",
+    "database": "stg_db"
+  },
+  "testData": {
+    "welcomeMessage": "Welcome to Staging Environment",
+    "defaultTimeout": 15000
+  }
+}

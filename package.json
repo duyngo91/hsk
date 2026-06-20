@@ -1,0 +1,21 @@
+{
+  "name": "playwright-enterprise-framework",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Enterprise automation testing framework for Web, Mobile, API, and DB using TypeScript and Playwright",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test --config=config/playwright.config.ts",
+    "test:dev": "cross-env ENV=dev playwright test --config=config/playwright.config.ts",
+    "test:sit": "cross-env ENV=sit playwright test --config=config/playwright.config.ts",
+    "test:stg": "cross-env ENV=stg playwright test --config=config/playwright.config.ts"
+  },
+  "devDependencies": {
+    "@mobilewright/test": "^0.0.46",
+    "@playwright/test": "^1.45.0",
+    "@types/node": "^20.11.0",
+    "cross-env": "^7.0.3",
+    "mobilewright": "^0.0.46",
+    "typescript": "^5.3.3"
+  }
+}
