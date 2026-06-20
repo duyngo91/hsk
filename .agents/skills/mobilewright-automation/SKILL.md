@@ -99,8 +99,22 @@ AI agents can invoke `playwright` MCP tools (e.g., `browser_navigate`, `browser_
 1. Spin up a live browser window to inspect elements and fetch exact selector IDs.
 2. Interactively run through login and checkout flows to verify elements before generating POM files.
 
-### B. Mobilewright / Mobile MCP
-AI agents can invoke `mobile-mcp` (or custom Appium-based mobile MCP servers) to:
-1. Retrieve the active mobile screen's **accessibility tree** in JSON format to locate elements.
-2. Dispatch native touch/swipe/input events to verify application state.
-3. Automatically diagnose test failures by fetching live simulator screenshots and inspecting the app hierarchy.
+### B. Mobilewright / Mobile MCP (using `@mobilenext/mobile-mcp`)
+AI agents can invoke the following specific **`mobile-mcp`** tools to control emulators, simulators, and real devices:
+
+1.  **Device & Orientation Management**:
+    *   `mobile_list_available_devices` - Retrieve all attached simulators, emulators, and physical devices.
+    *   `mobile_get_screen_size` - Fetch screen dimensions in pixels.
+    *   `mobile_get_orientation` / `mobile_set_orientation` - Read or switch between portrait and landscape.
+2.  **App lifecycle Management**:
+    *   `mobile_list_apps` - List all installed application package names.
+    *   `mobile_install_app` / `mobile_uninstall_app` - Manage app packages (.apk, .app, .ipa, .zip).
+    *   `mobile_launch_app` / `mobile_terminate_app` - Start and stop mobile applications.
+3.  **Real-Time Interactions**:
+    *   `mobile_take_screenshot` / `mobile_save_screenshot` - Pull visual screenshots to diagnose UI state.
+    *   `mobile_list_elements_on_screen` - Dump the accessibility tree hierarchy with coordinate bounding boxes.
+    *   `mobile_click_on_screen_at_coordinates` / `mobile_double_tap_on_screen` / `mobile_long_press_on_screen_at_coordinates` - Fire native pointer events.
+    *   `mobile_swipe_on_screen` - Scroll or swipe in directions (up, down, left, right).
+    *   `mobile_type_keys` - Type text values into focused inputs.
+    *   `mobile_press_button` - Emulate hardware keys (HOME, BACK, VOLUME_UP, VOLUME_DOWN, ENTER).
+    *   `mobile_open_url` - Fire deep links or web pages in the mobile default browser.
