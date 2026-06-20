@@ -53,7 +53,7 @@ export default defineConfig({
         platform: envConfig.mobile.platformName.toLowerCase() as 'ios' | 'android',
         deviceName: envConfig.mobile.deviceName,
         installApps: [envConfig.mobile.appPath],
-      },
+      } as any,
     }
   ],
 });
