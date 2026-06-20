@@ -1,25 +1,40 @@
 import { test as mobileTest } from '@mobilewright/test';
 import { chromium, Page, expect } from '@playwright/test';
 import { LoginPage } from '@pages/system-a/login.page.js';
-import { LoginScreen } from '@screens/system-a/login.screen.js';
+import { CustomerLoginScreen } from '@screens/customer-app/login.screen.js';
+import { DriverLoginScreen } from '@screens/driver-app/login.screen.js';
+import { MerchantDashboardScreen } from '@screens/merchant-app/dashboard.screen.js';
 import { UserApiService } from '@core/api/api.client.js';
 import { DbClient } from '@core/database/db.client.js';
+import { config } from '@config/env.config.js';
 
 // Interface grouping all Web Page Objects
 export interface WebAppPOMs {
   loginPage: LoginPage;
 }
 
-// Interface grouping all Mobile Screen Objects
-export interface MobileAppScreens {
-  loginScreen: LoginScreen;
+// Interface grouping all Customer App Screens
+export interface CustomerAppPOM {
+  loginScreen: CustomerLoginScreen;
 }
 
-// Extend `@mobilewright/test` runner to support Web, API, and DB testing
+// Interface grouping all Driver App Screens
+export interface DriverAppPOM {
+  loginScreen: DriverLoginScreen;
+}
+
+// Interface grouping all Merchant App Screens
+export interface MerchantAppPOM {
+  dashboardScreen: MerchantDashboardScreen;
+}
+
+// Extend `@mobilewright/test` runner to support Web, API, DB and Multi-App testing
 export const test = mobileTest.extend<{
   webPage: Page;
   webApp: WebAppPOMs;
-  mobileApp: MobileAppScreens;
+  customerApp: CustomerAppPOM;
+  driverApp: DriverAppPOM;
+  merchantApp: MerchantAppPOM;
   apiClient: UserApiService;
   dbClient: DbClient;
 }>({
@@ -46,12 +61,55 @@ export const test = mobileTest.extend<{
     await use(poms);
   },
 
-  // Mobile Screens POM Fixture (uses mobilewright's native `screen` fixture)
-  mobileApp: async ({ screen }, use) => {
-    const screens: MobileAppScreens = {
-      loginScreen: new LoginScreen(screen)
+  // Customer Mobile App Fixture (uses mobilewright's native `device` and `screen` fixtures)
+  customerApp: async ({ device, screen }, use) => {
+    console.log('[Fixture] Launching Customer App...');
+    const appConfig = config.mobile.apps.customerApp;
+    // Launch the specific application package
+    await device.launchApp(appConfig.appPackage, { activity: appConfig.appActivity });
+
+    const poms: CustomerAppPOM = {
+      loginScreen: new CustomerLoginScreen(screen)
     };
-    await use(screens);
+
+    await use(poms);
+
+    // Clean up: stop the application package
+    await device.terminateApp(appConfig.appPackage);
+  },
+
+  // Driver Mobile App Fixture (uses mobilewright's native `device` and `screen` fixtures)
+  driverApp: async ({ device, screen }, use) => {
+    console.log('[Fixture] Launching Driver App...');
+    const appConfig = config.mobile.apps.driverApp;
+    // Launch the specific application package
+    await device.launchApp(appConfig.appPackage, { activity: appConfig.appActivity });
+
+    const poms: DriverAppPOM = {
+      loginScreen: new DriverLoginScreen(screen)
+    };
+
+    await use(poms);
+
+    // Clean up: stop the application package
+    await device.terminateApp(appConfig.appPackage);
+  },
+
+  // Merchant Mobile App Fixture (uses mobilewright's native `device` and `screen` fixtures)
+  merchantApp: async ({ device, screen }, use) => {
+    console.log('[Fixture] Launching Merchant App...');
+    const appConfig = config.mobile.apps.merchantApp;
+    // Launch the specific application package
+    await device.launchApp(appConfig.appPackage, { activity: appConfig.appActivity });
+
+    const poms: MerchantAppPOM = {
+      dashboardScreen: new MerchantDashboardScreen(screen)
+    };
+
+    await use(poms);
+
+    // Clean up: stop the application package
+    await device.terminateApp(appConfig.appPackage);
   },
 
   // API Client Fixture

@@ -23,6 +23,8 @@ This skill provides the syntax, rules, and examples for generating native mobile
 ## 2. API Signature & Syntax Reference
 
 ### Mobile Actions
+*   **Launch App**: `await device.launchApp('bundleId', { activity: '.MainActivity' })`
+*   **Terminate App**: `await device.terminateApp('bundleId')`
 *   **Tap**: `await element.tap()`
 *   **Type/Fill**: `await element.fill('text')`
 *   **Press Back**: `await device.press('Back')` (Android-specific)
@@ -40,7 +42,9 @@ All page objects and helpers are injected via [base.fixture.ts](file:///e:/Proje
 
 *   `webPage`: The browser Page context (for Web actions)
 *   `webApp`: Object containing all Web Page Objects (e.g., `loginPage`)
-*   `mobileApp`: Object containing all Mobile Screen Objects (e.g., `loginScreen` wrapping the native Mobilewright `screen`)
+*   `customerApp`: Object containing Customer App screens (e.g., `loginScreen`)
+*   `driverApp`: Object containing Driver App screens (e.g., `loginScreen`)
+*   `merchantApp`: Object containing Merchant App screens (e.g., `dashboardScreen`)
 *   `screen`: Raw Mobilewright screen context
 *   `device`: Raw Mobilewright device context
 *   `apiClient`: Reusable REST API Client
@@ -55,13 +59,12 @@ All page objects and helpers are injected via [base.fixture.ts](file:///e:/Proje
 import { test, expect } from '@fixtures/base.fixture.js';
 
 test.describe('Mobile Authentication', () => {
-  test('User can log in successfully on App', async ({ mobileApp }) => {
-    // 1. Interact with the Mobile POM
-    await mobileApp.loginScreen.login('john_doe', 'secure_pass_123');
+  test('User can log in successfully on Customer App', async ({ customerApp }) => {
+    // 1. Interact with the Customer App POM
+    await customerApp.loginScreen.login('customer_john@gmail.com', 'securePass123');
 
-    // 2. Validate state after login
+    // 2. Validate screen state after login
     // (Inside loginScreen, elements are located using screen.getByLabel or getByRole)
-    // Here we can check screen elements
   });
 });
 ```
@@ -72,7 +75,7 @@ Use this pattern when a workflow crosses boundaries (e.g., triggering a push not
 import { test, expect } from '@fixtures/base.fixture.js';
 import { config } from '@config/env.config.js';
 
-test('E2E Account Creation & Mobile Login', async ({ webApp, mobileApp, dbClient }) => {
+test('E2E Account Creation & Mobile Login', async ({ webApp, customerApp, dbClient }) => {
   const newUser = config.web.users.standard;
 
   // Step 1: Create user on the Web Portal
@@ -84,7 +87,7 @@ test('E2E Account Creation & Mobile Login', async ({ webApp, mobileApp, dbClient
   expect(dbUser?.status).toBe('ACTIVE');
 
   // Step 3: Perform authentication check on Mobile application
-  await mobileApp.loginScreen.login(newUser.username, newUser.password);
+  await customerApp.loginScreen.login(newUser.username, newUser.password);
 });
 ```
 

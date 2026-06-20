@@ -14,14 +14,28 @@
     }
   },
   "mobile": {
-    "appPath": "./apps/stg-app.apk",
     "deviceName": "Pixel_7_Stg",
     "platformName": "Android",
-    "appPackage": "com.example.myapp",
-    "appActivity": ".MainActivity",
     "udid": "",
     "noReset": true,
-    "fullReset": false
+    "fullReset": false,
+    "apps": {
+      "customerApp": {
+        "appPath": "./apps/customer-stg.apk",
+        "appPackage": "com.taxi.customer",
+        "appActivity": ".MainActivity"
+      },
+      "driverApp": {
+        "appPath": "./apps/driver-stg.apk",
+        "appPackage": "com.taxi.driver",
+        "appActivity": ".MainActivity"
+      },
+      "merchantApp": {
+        "appPath": "./apps/merchant-stg.apk",
+        "appPackage": "com.taxi.merchant",
+        "appActivity": ".MainActivity"
+      }
+    }
   },
   "api": {
     "baseUrl": "https://stg-api.mysystem.com"

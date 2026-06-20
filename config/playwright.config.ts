@@ -52,9 +52,7 @@ export default defineConfig({
       use: {
         platform: envConfig.mobile.platformName.toLowerCase() as 'ios' | 'android',
         deviceName: envConfig.mobile.deviceName,
-        installApps: [envConfig.mobile.appPath],
-        bundleId: envConfig.mobile.appPackage,
-        activity: envConfig.mobile.appActivity,
+        installApps: Object.values(envConfig.mobile.apps).map(app => app.appPath),
         udid: envConfig.mobile.udid,
         noReset: envConfig.mobile.noReset,
         fullReset: envConfig.mobile.fullReset,

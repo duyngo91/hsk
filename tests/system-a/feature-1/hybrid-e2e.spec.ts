@@ -6,7 +6,7 @@ test.describe('System A - Hybrid E2E Integration Flow', () => {
 
   test('Verify cross-platform workflow - web activation, mobile login and database validation', async ({ 
     webApp, 
-    mobileApp, 
+    customerApp, 
     apiClient, 
     dbClient 
   }) => {
@@ -31,10 +31,10 @@ test.describe('System A - Hybrid E2E Integration Flow', () => {
 
     // 4. Mobile App Action: User launches mobile application and logs in
     console.log('[Hybrid Test Step 4] Mobile Application Login');
-    // Using Mobilewright, `mobileApp.loginScreen` interacts with the native mobile app
+    // Using Mobilewright, `customerApp.loginScreen` interacts with the native mobile app
     // We mock these gestures during this dry run validation
     try {
-      await mobileApp.loginScreen.login(userCredentials.username, userCredentials.password);
+      await customerApp.loginScreen.login(userCredentials.username, userCredentials.password);
     } catch (e: any) {
       console.warn('[Hybrid Test Warning] Native Mobile execution context ignored for skeleton dry-run:', e.message);
     }

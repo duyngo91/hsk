@@ -15,14 +15,18 @@ export interface EnvConfig {
     };
   };
   mobile: {
-    appPath: string;
     deviceName: string;
     platformName: string;
-    appPackage?: string;
-    appActivity?: string;
     udid?: string;
     noReset?: boolean;
     fullReset?: boolean;
+    apps: {
+      [appName: string]: {
+        appPath: string;
+        appPackage: string;
+        appActivity?: string;
+      };
+    };
   };
   api: {
     baseUrl: string;
